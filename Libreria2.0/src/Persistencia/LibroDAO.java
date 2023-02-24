@@ -25,8 +25,7 @@ public class LibroDAO extends DAO<Libro>{
     }
     
     public List <Libro> BaseLibros(){
-        
-            
+           
         conectar();
         List <Libro> ListaLibro = em.createQuery("SELECT a FROM Libro a").getResultList();
         desconectar();

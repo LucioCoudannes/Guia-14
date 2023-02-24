@@ -1,6 +1,7 @@
 package Servicio;
 
 import Entidades.Autor;
+import Entidades.Editorial;
 import Entidades.Libro;
 import Persistencia.AutorDAO;
 import Persistencia.EditorialDAO;
@@ -27,21 +28,21 @@ public class LibroService {
             System.out.println("Elija el autor del libro");
             as.imprimirAutores();
             int op = leer.nextInt();
-            if(op==AD.mostrarAutores().size()+1){
+            if (op == AD.mostrarAutores().size() + 1) {
                 as.crearAutor();
-                
-            }else{
+
+            } else {
                 lib.setAutor(AD.mostrarAutores().get(op));
             }
             System.out.println("Elija la editorial del libro");
             es.imprimirEditoriales();
             int op2 = leer.nextInt();
-            if(op2==ED.mostrarEditoriales().size()+1){
-               es.crearEditorial();                
-            }else{
+            if (op2 == ED.mostrarEditoriales().size() + 1) {
+                es.crearEditorial();
+            } else {
                 lib.setEditorial(ED.mostrarEditoriales().get(op2));
             }
-            
+
             System.out.println("ingrese el nombre del Libro");
             lib.setTitulo(leer.next());
             System.out.println("Ingrese el año de publicacion");
@@ -187,34 +188,57 @@ public class LibroService {
         String lib = leer.next();
 
         Libro libro = LD.buscarPorTitulo(lib);
+        
+        int OP;
 
-        System.out.println("Ingrese el dato que desee modificar");
-        System.out.println("1. Titulo");
-        System.out.println("2. Autor");
-        System.out.println("3. Editorial");
-        System.out.println("4. Cantidad de Ejemplares");
-        System.out.println("5. ISBN");
-        System.out.println("5. Salir");
+        do {
 
-        int OP = leer.nextInt();
+            System.out.println("Ingrese el dato que desee modificar");
+            System.out.println("1. Titulo");
+            System.out.println("2. Autor");
+            System.out.println("3. Editorial");
+            System.out.println("4. Cantidad de Ejemplares");
+            System.out.println("5. ISBN");
+            System.out.println("6. Salir");
 
-        switch (OP) {
+            OP = leer.nextInt();
 
-            case 1:
-                System.out.println("Ingrese el nuevo titulo");
-                String tit = leer.next();
-                libro.setTitulo(tit);
-                LD.editar(libro);
-                break;
-            case 2:
-                System.out.println("Ingrese el nombre del Autor");
-                String au = leer.next();
-                Autor autor = as.buscarAutorPorNombre(au);
-                libro.setAutor(autor);
-                LD.editar(libro);
-                break;
+            switch (OP) {
 
-        }
+                case 1:
+                    System.out.println("Ingrese el nuevo titulo");
+                    libro.setTitulo(leer.next());
+                    LD.editar(libro);
+                    break;
+                case 2:
+                    System.out.println("Ingrese el nombre del Autor");
+                    String au = leer.next();
+                    Autor autor = as.buscarAutorPorNombre(au);
+                    libro.setAutor(autor);
+                    LD.editar(libro);
+                    break;
+                case 3:
+                    System.out.println("Ingrese el nombre de la Editorial");
+                    String edix = leer.next();
+                    Editorial edi = es.buscarEditorialPorNombre(edix);
+                    libro.setEditorial(edi);
+                    LD.editar(libro);
+                    break;
+                case 4:
+                    System.out.println("Ingrese la cantidad de ejemplares");
+                    Integer ejem = leer.nextInt();
+                    libro.setEjemplaresRestantes(ejem + libro.getEjemplaresRestantes());
+                    LD.editar(libro);
+                    break;
+                case 5:
+                    System.out.println("Ingrese el nuevo ISBN");
+                    libro.setIsbn(leer.nextLong());
+                    LD.editar(libro);
+                    break;
+
+            }
+
+        } while (OP!=6);
 
     }
 

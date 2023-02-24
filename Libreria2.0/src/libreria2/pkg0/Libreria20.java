@@ -15,7 +15,9 @@ public class Libreria20 {
         EditorialService es = new EditorialService();
         LibroService ls = new LibroService();
 
-        ls.crearLibro();
+        ls.editarLibro();
+        
+        
 
 //        for (int i = 0; i < 1; i++) {
 //            
