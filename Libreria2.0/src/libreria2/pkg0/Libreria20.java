@@ -11,11 +11,16 @@ public class Libreria20 {
 
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
-        AutorService as = new AutorService();
-        EditorialService es = new EditorialService();
-        LibroService ls = new LibroService();
-
-        ls.editarLibro();
+//        AutorService as = new AutorService();
+//        EditorialService es = new EditorialService();
+//        LibroService ls = new LibroService();
+        
+        Menu menu = new Menu();
+        
+        menu.Menu();
+                
+                
+           
         
         
 

@@ -21,6 +21,8 @@ public class LibroService {
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
     public void crearLibro() {
+        
+        Autor autor = new Autor();
 
         try {
             Libro lib = new Libro();
@@ -29,11 +31,13 @@ public class LibroService {
             as.imprimirAutores();
             int op = leer.nextInt();
             if (op == AD.mostrarAutores().size() + 1) {
-                as.crearAutor();
+               autor = as.crearAutor();
 
             } else {
-                lib.setAutor(AD.mostrarAutores().get(op));
+                autor = AD.mostrarAutores().get(op);
             }
+            lib.setAutor(autor);
+            
             System.out.println("Elija la editorial del libro");
             es.imprimirEditoriales();
             int op2 = leer.nextInt();

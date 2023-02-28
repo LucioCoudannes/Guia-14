@@ -22,7 +22,7 @@ public class Menu {
         do {
             
             System.out.println("Ingrese la opcion deseada");
-            op = leer.nextInt();
+            
             System.out.println("\n***********Menu******************");
             System.out.println("1- Mostrar Todos los Libros ");
             System.out.println("2- Buscar Libro por ISBN");
@@ -35,9 +35,9 @@ public class Menu {
             System.out.println("9- Modificar Libro");
             System.out.println("10- Alta Nuevo Cliente");
             System.out.println("11- Eliminar Autor");
-            
+            System.out.println("----------------------------");
             System.out.println("20- Salir");
-            
+            op = leer.nextInt();
             switch(op){
                 
                 case 1: ls.mostrarLibros();
@@ -58,8 +58,9 @@ public class Menu {
                 break;
                 case 8: ls.eliminarLibro();
                 break;
-                case 9:
-                
+                case 9: ls.editarLibro();
+                break;
+                        
                 
                 
             }

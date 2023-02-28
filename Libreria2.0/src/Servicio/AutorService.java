@@ -24,9 +24,19 @@ public class AutorService {
 
             autor.setId(UUID.randomUUID().toString());
             System.out.println("ingrese el nombre del autor");
-            autor.setNombre(leer.next());
+            String nom = leer.next();
+            if(nom.equalsIgnoreCase(AD.buscarPorNombre(nom).getNombre())){
+                System.out.println("El Autor ya existe");
+                return AD.buscarPorNombre(nom);
+                
+            }else {
+            autor.setNombre(nom);
             autor.setAlta(true);
             AD.guardar(autor);
+                
+                
+            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,16 +50,14 @@ public class AutorService {
 
      
         try {
-            if (nombre.equalsIgnoreCase(AD.buscarPorNombre(nombre).getNombre())) {
+            
                 return AD.buscarPorNombre(nombre);
-            } else {
-                return crearAutor();
-            }
+            
         } catch (Exception e) {
             System.out.println("El autor no existe, cargar autor nuevo");
             return crearAutor();
         }
-
+            
     }
     
     public List <Autor> imprimirAutores(){
